@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="description" content="">
+        <meta name="author" content="">
+        <title>New page</title>
+        <link rel="stylesheet" type="text/css" href="{% static 'polls/style.css' %}">
+    </head>
+    <body style="display:grid;grid-template-columns:5% 1fr 5%;grid-template-rows:auto;grid-template-areas:'. content .';">
+        <div class="pg-empty-placeholder" style="grid-area: content; text-align: center;">
+		{% if latest_question_list %}
+		<h2>Check out these polls!</h2>
+		<ul>
+		{% for question in latest_question_list %}
+		<li><a href="{% url 'polls:detail' question.id %}">{{ question.question_text }}</a></li>
+		{% endfor %}
+		</ul>
+			{% else %}
+			<p>No polls are available.</p>
+		{% endif %}
+		
+		</div>
+    </body>
+</html>
+
+
+
+
+
+
